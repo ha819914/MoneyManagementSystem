@@ -21,7 +21,7 @@ public class MenuManager {
 			else if(num==3)        
 				moneymanager.edit_money();
 			else if(num==4)       
-				moneymanager.view_money();
+				moneymanager.view_moneys();
 			else                  
 				continue; 
 		}			
