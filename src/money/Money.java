@@ -1,8 +1,15 @@
 package money;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Money {
+import exception.DateFormatException;
+
+public abstract class Money implements UserInput,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1871436379457502823L;
 	protected PersonKind kind=PersonKind.Worker;
 	protected String date;
 	protected int income;
@@ -31,7 +38,10 @@ public abstract class Money {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(String date) throws DateFormatException {
+		if(!date.contains("/")) {
+			throw new DateFormatException();
+		}
 		this.date = date;
 	}
 
@@ -62,17 +72,34 @@ public abstract class Money {
 	
 	public abstract void printInfo();
 	
-	public void getUserInput(Scanner input) {
-		System.out.print("Date:");                          
-		String date=input.next();
-		this.setDate(date);
-		System.out.print("income:");           
+	public void setDate(Scanner input) {
+		String date="";
+		while(!date.contains("/")) {
+			System.out.println("Date");
+			date=input.next();
+			try {
+				this.setDate(date);
+			}catch(DateFormatException e){
+				System.out.println("Incorrect Date Format. put the date that contains /");
+			}
+		}	
+	}
+	public void setIncome(Scanner input) {
+		System.out.println("Income");
 		int income=input.nextInt();
 		this.setIncome(income);
-		System.out.print("expenditure:"); 
+		int total_money=income-this.getExpenditure();
+		this.setTotal_money(total_money);
+	}
+	public void setExpenditure(Scanner input) {
+		System.out.println("Expenditure");
 		int expenditure=input.nextInt();
 		this.setExpenditure(expenditure);
-		int total_money=income-expenditure;
+		int total_money=this.getIncome()-expenditure;
+		this.setTotal_money(total_money);
+	}
+	public void setTotal_money() {
+		int total_money=this.getIncome()-this.getExpenditure();
 		this.setTotal_money(total_money);
 	}
 }
