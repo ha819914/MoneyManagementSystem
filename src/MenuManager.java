@@ -18,6 +18,9 @@ public class MenuManager {
 		if(moneymanager==null) {
 			moneymanager=new MoneyManager(input);
 		}
+		else {
+			moneymanager.input=input;
+		}
 		
 		selectMenu(input,moneymanager);
 		putObject(moneymanager,"moneymanager.ser");

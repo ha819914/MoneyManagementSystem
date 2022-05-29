@@ -104,8 +104,8 @@ public class MoneyManager implements Serializable {
 			return -1;
 		}
 	}
-	
-	public void edit_money() {          
+
+	public void edit_money() {
 		System.out.print("Date:");              
 		String Date=input.next();
 		for(int i=0;i<moneys.size();i++) {
