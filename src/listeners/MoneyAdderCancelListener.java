@@ -5,23 +5,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import gui.MoneyAdder;
 import gui.MoneyViewer;
 import gui.WindowFrame;
 
-public class ButtonViewListener implements ActionListener {
+public class MoneyAdderCancelListener implements ActionListener {
 
 	WindowFrame frame;
 	
-	public ButtonViewListener(WindowFrame frame) {
+	public MoneyAdderCancelListener(WindowFrame frame) {
 		this.frame=frame;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton b=(JButton) e.getSource();
-		System.out.println(b.getText());
-		MoneyViewer viewer=frame.getMoneyviewer();
-		frame.setupPanel(viewer);
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(frame.getMenuselction());
+		frame.revalidate();
+		frame.repaint();
 	}
 
 }

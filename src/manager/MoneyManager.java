@@ -23,6 +23,16 @@ public class MoneyManager implements Serializable {
 		this.input=input;
 	}
 	
+	public void add_money(String date, String income, String expenditure) {
+		UserInput userInput=new Worker();
+		userInput.getUserInput(input);
+		moneys.add(userInput);
+	}
+	
+	public void add_money(UserInput userInput) {
+		moneys.add(userInput);
+	}
+	
 	public void add_money() {  
 		int kind=0;
 		UserInput userInput;
